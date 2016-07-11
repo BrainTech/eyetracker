@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-TARGET = eyetracker-tobii
+TARGET = eyetracker-tobii-preview
 
 QT += qml quick widgets websockets
 CONFIG += c++11

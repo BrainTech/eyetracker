@@ -7,7 +7,7 @@ Makefile
 *~
 ml/eyetracker-ml
 camera/eyetracker-hpe
-tobii/eyetracker-tobii
+tobii/eyetracker-tobii-preview
 mockup/eyetracker-mockup
 bin/
 tobii/sdk/
