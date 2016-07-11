@@ -8,9 +8,9 @@ import pisak.eyetracker 1.0
 ApplicationWindow {
     id: applicationWnd
     visible: true
-    visibility: "FullScreen"
-    width: Screen.width
-    height: Screen.height
+    visibility: "Windowed"
+    width: 0.7*Screen.width
+    height: 0.7*Screen.height
     title: qsTr("Eyetracker calibration")
     color: "#555" // background color
 
@@ -179,7 +179,15 @@ ApplicationWindow {
         }
 
         onGazeData: {
-            //console.log(point)
+            var msg
+            msg = "gaze_pos: " + point.x.toFixed(3) + " " + point.y.toFixed(3)
+                + ", timestamp: " + timestamp.toFixed(6)
+                + ", eyeDetected: " + (eyeDetected ? "true" : "false")
+            console.log(msg)
+
+            msg = "(" + point.x.toFixed(3) + ", " + point.y.toFixed(3) + ")"
+            infoText.text = msg
+
             if(eyeDetected) {
                 eyeStatus.change(true)
             } else {
@@ -229,17 +237,10 @@ ApplicationWindow {
         styleColor: "black"
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter
-        text: qsTr("Press any key to start calibration...")
+        text: qsTr("Tobii eyetracker")
 
         Keys.onPressed: {
-            focus = false
-            eyeStatus.visible = false
-            if(calibration.loadConfig()) {
-                console.log("tracker config loaded")
-            } else {
-                console.log("error loading tracker config")
-            }
-            calibration.runSetup()
+            calibration.shutdown()
         }
     }
 
@@ -385,12 +386,12 @@ ApplicationWindow {
 
     Rectangle {
         id: trackingDot
-        width: 25
+        width: 10
         height: width
-        visible: false
+        visible: true
         color: "orange"
         border.color: "black"
-        border.width: 1
+        border.width: 0.6
         antialiasing: true
         radius: width * 0.5
 

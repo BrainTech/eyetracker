@@ -41,12 +41,12 @@ int etr_main(int argc, char * argv[])
     parser.addHelpOption();
 
     parser.addOptions({
-        { {"c", "calibration"},
-          QCoreApplication::translate("main", "Set calibration mode.") },
-        { {"v", "verbose"},
-          QCoreApplication::translate("main", "Print coordinates to console (only in tracking mode).") },
-        { {"w", "ws-server"},
-          QCoreApplication::translate("main", "Run websocket server (only in tracking mode).") },
+        //{ {"c", "calibration"},
+        //  QCoreApplication::translate("main", "Set calibration mode.") },
+        //{ {"v", "verbose"},
+        //  QCoreApplication::translate("main", "Print coordinates to console (only in tracking mode).") },
+        //{ {"w", "ws-server"},
+        //  QCoreApplication::translate("main", "Run websocket server (only in tracking mode).") },
         { "host",
           QCoreApplication::translate("main", "Websocket server host (default 127.0.0.1)."),
           "host", "127.0.0.1" },
@@ -57,9 +57,9 @@ int etr_main(int argc, char * argv[])
 
     parser.process(app);
 
-    const bool calibrationMode = parser.isSet("calibration");
-    const bool enableWebsocketServer = parser.isSet("ws-server");
-    const bool verboseMode = parser.isSet("verbose");
+    const bool calibrationMode = true; //parser.isSet("calibration");
+    const bool enableWebsocketServer = true; //parser.isSet("ws-server");
+    const bool verboseMode = true; //parser.isSet("verbose");
     const QHostAddress wsHost(parser.value("host"));
     const quint16 wsPort = parser.value("port").toUInt();
 
